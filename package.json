@@ -1,27 +1,23 @@
 {
-  "name": "hubot",
-  "version": "1.0.0",
-  "private": true,
-  "author": "William Durand <will+git@drnd.me>",
-  "description": "Our superhero!",
+  "name": "hubot-bang-bang",
+  "description": "Repeat the last command directed at hubot",
+  "version": "1.0.1",
+  "author": "Brad Clark <bdashrad@gmail.com>",
+  "license": "MIT",
+  "keywords": [
+    "hubot",
+    "hubot-scripts"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/bdashrad/hubot-bang-bang.git"
+  },
+  "bugs": {
+    "url": "https://github.com/bdashrad/hubot-bang-bang/issues"
+  },
   "dependencies": {
     "coffee-script": "^1.11.1",
-    "githubot": "^1.0.1",
-    "hubot": "^2.19",
-    "hubot-alias": "^0.1.11",
-    "hubot-auto-deploy": "^0.1.9",
-    "hubot-circleci": "^0.8",
-    "hubot-datadog": "^0.2.4",
-    "hubot-deploy": "github:willdurand/hubot-deploy#tailordev",
-    "hubot-diagnostics": "0.0.1",
-    "hubot-help": "^0.2.0",
-    "hubot-maps": "0.0.2",
-    "hubot-redis-brain": "0.0.3",
-    "hubot-rules": "^0.1",
-    "hubot-slack": "^4.1.0",
-    "hubot-tweeter": "github:willdurand/hubot-tweeter#tailordev",
-    "hubot-youtube": "^1.0",
-    "papertrail-hubot": "github:willdurand/papertrail-hubot#tailordev"
+    "hubot": "^2.19"
   },
   "devDependencies": {
     "chai": "^3.3.0",
@@ -29,9 +25,7 @@
     "mocha": "^3.0.0",
     "nock": "^8.0.0"
   },
-  "engines": {
-    "node": "^5.0"
-  },
+  "main": "index.coffee",
   "scripts": {
     "test": "bin/test"
   }

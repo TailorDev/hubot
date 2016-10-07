@@ -2,7 +2,7 @@ chai   = require 'chai'
 helper = require './test-helper'
 assert = chai.assert
 
-describe 'hubot !!', ->
+describe 'hubot bang-bang', ->
   beforeEach (done) ->
     @robot = helper.robot()
     @user  = helper.testUser @robot

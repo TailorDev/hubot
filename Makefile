@@ -1,9 +1,9 @@
 default: test
 
 boostrap:
-	@bin/bootstrap
+	@scripts/bootstrap
 
 test:
-	@bin/test
+	@scripts/test
 
 .PHONY: bootstrap test

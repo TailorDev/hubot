@@ -45,11 +45,7 @@ exports.testUser = (robot) ->
 
 # The path to the top-level scripts/ directory. Useful in conjunction with
 # robot.loadFile().
-exports.SCRIPTS_PATH = Path.join __dirname, '..', 'scripts'
-
-# The path to the top-level src/ directory. Useful in conjunction with
-# robot.loadFile().
-exports.SRC_PATH = Path.join __dirname, '..', 'src'
+exports.SCRIPTS_PATH = Path.join __dirname, '..', 'src'
 
 # Sends one or more TextMessages to the robot. Waits for a response to each
 # message before sending the next one. The callback is called when the response
