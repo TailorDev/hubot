@@ -141,3 +141,22 @@ describe 'hubot msw', ->
       helper.converse @robot, @user, '/msw categories', (_, response) ->
         assert.include response, "Beyond Academia: beyond"
         done()
+
+  describe 'close', ->
+    it 'should comment and close the given issues', (done) ->
+      for n in [1, 2, 5]
+        do (n) ->
+          api
+            .post(
+              "/repos/TailorDev/ModernScienceWeekly/issues/#{n}/comments",
+              { body: 'Added to MSW issue n°123.' }
+            )
+            .reply(201, { number: n, html_url: 'comment-url' })
+
+          api
+            .patch("/repos/TailorDev/ModernScienceWeekly/issues/#{n}")
+            .reply(200, { title: n, html_url: 'html_url', labels: [] })
+
+      helper.converse @robot, @user, '/msw 123 contains 1,2 5 a', (_, response) ->
+        assert.include response, "done!"
+        done()

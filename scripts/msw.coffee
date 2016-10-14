@@ -16,15 +16,15 @@
 # Author:
 #   William Durand
 
-githubot = require 'githubot'
-utils = require '../src/utils'
-slack = require '../src/slack'
+github = require '../src/github'
+utils  = require '../src/utils'
+slack  = require '../src/slack'
 
 slackTeam  = process.env.HUBOT_SLACK_TEAM ? 'tailordev'
 repository = 'TailorDev/ModernScienceWeekly'
 
 module.exports = (robot) ->
-  gh = githubot(robot)
+  gh = github(robot)
   endpoint = "/repos/#{repository}/issues"
 
   categories = [
@@ -70,6 +70,7 @@ module.exports = (robot) ->
       cb issue
 
   ###
+  Retrieve a list of issues (by label optionally)
   ###
   getIssues = (label, limit, cb) ->
     # error handler
@@ -82,6 +83,21 @@ module.exports = (robot) ->
 
     gh.get url, (issues) ->
       cb issues
+
+  ###
+  Close a given issue
+  ###
+  closeIssue = (number, cb) ->
+    payload =
+      state: 'closed'
+
+    # error handler
+    gh.handleErrors (response) ->
+      cb response
+
+    url = "#{endpoint}/#{number}"
+    gh.patch url, payload, (issue) ->
+      cb issue
 
   ###
   Listeners
@@ -149,3 +165,22 @@ module.exports = (robot) ->
       reply.push "#{c.name}: #{c.alt.join ', '}"
 
     msg.reply reply.join "\n"
+
+  robot.respond /msw #?([0-9]+) contains:? ([\s,0-9]+)/i, (msg) ->
+    mswID   = msg.match[1]
+    numbers = (parseInt(n, 10) for n in msg.match[2].split(/[,\s]/) when n isnt '')
+
+    [ owner, repo ] = repository.split '/'
+    comment = "Added to MSW issue n°#{mswID}."
+
+    for number in numbers
+      do (number) ->
+        gh.comment owner, repo, number, comment, (response) ->
+          if response.error
+            msg.reply 'Looks like something went wrong while trying to comment on \##{number}... :confused:'
+          else
+            closeIssue number, (response) ->
+              if response.error
+                msg.reply 'Looks like something went wrong while trying to close \##{number}... :confused:'
+
+    msg.reply 'done!'
