@@ -12,6 +12,7 @@
 #   hubot msw add <link> <issue title> #<category> - Create a new issue in the MSW repo.
 #   hubot msw list <category> - List the last MSW issues (limit = 10).
 #   hubot msw categories - List the available categories and their shortcuts.
+#   hubot msw issue <id> contains: <list of issue numbers> - Comment and close issues.
 #
 # Author:
 #   William Durand
@@ -166,13 +167,14 @@ module.exports = (robot) ->
 
     msg.reply reply.join "\n"
 
-  robot.respond /msw #?([0-9]+) contains:? ([\s,0-9]+)/i, (msg) ->
+  robot.respond /msw issue ([0-9]+) contains:? ([#\s,0-9]+)/i, (msg) ->
     mswID   = msg.match[1]
-    numbers = (parseInt(n, 10) for n in msg.match[2].split(/[,\s]/) when n isnt '')
+    numbers = (parseInt(n.replace('#', ''), 10) for n in msg.match[2].split(/[,\s]/) when n isnt '')
 
     [ owner, repo ] = repository.split '/'
-    comment = "Added to MSW issue n°#{mswID}."
+    comment = "Added to issue n°#{mswID}."
 
+    closed = 0
     for number in numbers
       do (number) ->
         gh.comment owner, repo, number, comment, (response) ->
@@ -183,4 +185,4 @@ module.exports = (robot) ->
               if response.error
                 msg.reply 'Looks like something went wrong while trying to close ##{number}... :confused:'
 
-    msg.reply 'done!'
+    msg.reply "Done!"
