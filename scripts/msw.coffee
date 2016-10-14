@@ -127,8 +127,8 @@ module.exports = (robot) ->
     label = if msg.match[2] then getLabel msg.match[2] else ''
 
     formatTitle = (title) ->
-      if title.length > 30
-        title = "#{title.substr 0, 27}..."
+      if title.length > 60
+        title = "#{title.substr 0, 57}..."
       return title
 
     formatLabels = (labels) ->
@@ -154,7 +154,7 @@ module.exports = (robot) ->
             reply = ["Here are the last #{count} issues I've found:", ""]
 
           issues.map (i) ->
-            reply.push "#{formatTitle i.title} - #{i.html_url} #{formatLabels i.labels}"
+            reply.push "#{formatTitle i.title} - <#{i.html_url}|##{i.number}> #{formatLabels i.labels}"
           reply = reply.join "\n"
 
       msg.reply reply
@@ -177,10 +177,10 @@ module.exports = (robot) ->
       do (number) ->
         gh.comment owner, repo, number, comment, (response) ->
           if response.error
-            msg.reply 'Looks like something went wrong while trying to comment on \##{number}... :confused:'
+            msg.reply 'Looks like something went wrong while trying to comment on ##{number}... :confused:'
           else
             closeIssue number, (response) ->
               if response.error
-                msg.reply 'Looks like something went wrong while trying to close \##{number}... :confused:'
+                msg.reply 'Looks like something went wrong while trying to close ##{number}... :confused:'
 
     msg.reply 'done!'

@@ -88,10 +88,10 @@ describe 'hubot msw', ->
 
   describe 'list', ->
     results = [
-      { title: 'Issue 1', html_url: 'issue-url-1', labels: [{ name: 'foo' }] },
-      { title: 'OpenCitations', html_url: 'issue-url-2', labels: [{ name: 'Open Science & Data' }] },
-      { title: 'Issue 123', html_url: 'issue-url-123', labels: [] },
-      { title: 'Issue with a very very long title', html_url: 'issue-url-5', labels: [] },
+      { title: 'Issue 1', number: 1, html_url: 'issue-url-1', labels: [{ name: 'foo' }] },
+      { title: 'OpenCitations', number: 2, html_url: 'issue-url-2', labels: [{ name: 'Open Science & Data' }] },
+      { title: 'Issue 123', number: 123, html_url: 'issue-url-123', labels: [] },
+      { title: 'Issue with a very very very very veryyyyyyyyyyyyyyy long title', number: 5, html_url: 'issue-url-5', labels: [] },
     ]
 
     it 'should list the last 10 issues', (done) ->
@@ -101,7 +101,7 @@ describe 'hubot msw', ->
 
       helper.converse @robot, @user, '/msw list', (_, response) ->
         assert.include response, "Here are the last #{results.length} issues I've found:"
-        assert.include response, 'Issue with a very very long... - issue-url-5'
+        assert.include response, 'Issue with a very very very very veryyyyyyyyyyyyyyy long ... - <issue-url-5|#5>'
         done()
 
     it 'should tell us when there is no issue', (done) ->
