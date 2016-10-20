@@ -1,5 +1,5 @@
 # Description:
-#   Get a link to an appear.in video chat room
+#   Get a link to a framatalk.org video chat room
 #
 # Dependencies:
 #   None
@@ -8,7 +8,7 @@
 #   None
 #
 # Commands:
-#   hubot appearin <roomname> - Get a link to appear.in/<roomname>.
+#   hubot appearin <roomname> - Get a link to framatalk.org/<roomname>.
 #   hubot appearin - Get a random room.
 #
 # Notes:
@@ -18,16 +18,18 @@
 #   digitalsadhu
 #   William Durand
 
+url = 'https://framatalk.org/' # 'https://appear.in/'
+
 module.exports = (robot) ->
 
-  robot.respond /appearin (.*)/i, (msg) ->
+  robot.respond /(?:appearin|talk|call) (.*)/i, (msg) ->
     roomname = msg.match[1]
-    msg.send "https://appear.in/#{roomname}"
+    msg.send "#{url}#{roomname}"
 
-  robot.respond /appearin$/i, (msg) ->
+  robot.respond /(?:appearin|talk|call)$/i, (msg) ->
     robot.http('http://www.setgetgo.com/randomword/get.php')
       .get() (err, res, body) ->
         if body
-          msg.send 'https://appear.in/' + body.trim().toLowerCase()
+          msg.send url + body.trim().toLowerCase()
         else
           msg.reply 'Looks like I cannot come up with a random word today...'
