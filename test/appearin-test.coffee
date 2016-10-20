@@ -21,7 +21,7 @@ describe 'hubot appearin', ->
 
   it 'should return a link to appearin for the given room', (done) ->
     helper.converse @robot, @user, '/appearin tailordev', (envelope, response) ->
-      assert.equal response, 'https://appear.in/tailordev'
+      assert.equal response, 'https://framatalk.org/tailordev'
       done()
 
   it 'should return a link to appearin with a random room', (done) ->
@@ -30,5 +30,14 @@ describe 'hubot appearin', ->
       .reply(200, 'Foobar')
 
     helper.converse @robot, @user, '/appearin', (envelope, response) ->
-      assert.equal response, 'https://appear.in/foobar'
+      assert.equal response, 'https://framatalk.org/foobar'
+      done()
+
+  it 'should tell people when it is not possible to get a random room name', (done) ->
+    nock('http://www.setgetgo.com')
+      .get('/randomword/get.php')
+      .replyWithError()
+
+    helper.converse @robot, @user, '/appearin', (envelope, response) ->
+      assert.equal response, 'Looks like I cannot come up with a random word today...'
       done()
