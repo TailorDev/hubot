@@ -27,4 +27,7 @@ module.exports = (robot) ->
   robot.respond /appearin$/i, (msg) ->
     robot.http('http://www.setgetgo.com/randomword/get.php')
       .get() (err, res, body) ->
-        msg.send 'https://appear.in/' + body.trim().toLowerCase()
+        if body
+          msg.send 'https://appear.in/' + body.trim().toLowerCase()
+        else
+          msg.reply 'Looks like I cannot come up with a random word today...'
