@@ -27,7 +27,7 @@
     "chai": "^3.3.0",
     "hubot-mock-adapter": "^1.0.0",
     "mocha": "^3.0.0",
-    "nock": "^8.0.0"
+    "nock": "^9.0.0"
   },
   "engines": {
     "node": "^5.0"
