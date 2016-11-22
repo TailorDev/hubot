@@ -1,5 +1,5 @@
 # Description:
-#   Get a link to a framatalk.org video chat room
+#   Get a link to a appear.in video chat room
 #
 # Dependencies:
 #   None
@@ -8,7 +8,7 @@
 #   None
 #
 # Commands:
-#   hubot appearin <roomname> - Get a link to framatalk.org/<roomname>.
+#   hubot appearin <roomname> - Get a link to appear.in/<roomname>.
 #   hubot appearin - Get a random room.
 #
 # Notes:
@@ -18,7 +18,7 @@
 #   digitalsadhu
 #   William Durand
 
-url = 'https://framatalk.org/' # 'https://appear.in/'
+url = 'https://appear.in/'
 
 module.exports = (robot) ->
 
