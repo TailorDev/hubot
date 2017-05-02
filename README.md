@@ -1,6 +1,8 @@
 hubot
 =====
 
+[![Greenkeeper badge](https://badges.greenkeeper.io/TailorDev/hubot.svg)](https://greenkeeper.io/)
+
 [![Build
 Status](https://travis-ci.org/TailorDev/hubot.svg?branch=master)](https://travis-ci.org/TailorDev/hubot)
 
