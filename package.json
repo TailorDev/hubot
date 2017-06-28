@@ -15,7 +15,7 @@
     "hubot-deploy": "github:willdurand/hubot-deploy#tailordev",
     "hubot-diagnostics": "0.0.2",
     "hubot-help": "^0.2.0",
-    "hubot-maps": "0.0.2",
+    "hubot-maps": "0.0.3",
     "hubot-redis-brain": "0.0.4",
     "hubot-rules": "^0.1",
     "hubot-slack": "^4.1.0",
