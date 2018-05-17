@@ -30,7 +30,7 @@
     "nock": "^9.0.0"
   },
   "engines": {
-    "node": "^5.0"
+    "node": "10"
   },
   "scripts": {
     "test": "bin/test"
