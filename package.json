@@ -7,7 +7,7 @@
   "dependencies": {
     "coffee-script": "^1.11.1",
     "githubot": "^1.0.1",
-    "hubot": "^2.19",
+    "hubot": "^3.1.0",
     "hubot-alias": "^0.1.11",
     "hubot-auto-deploy": "^0.1.9",
     "hubot-circleci": "^0.8",
