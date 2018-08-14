@@ -16,7 +16,7 @@
     "hubot-diagnostics": "0.0.2",
     "hubot-help": "^0.2.0",
     "hubot-maps": "0.0.3",
-    "hubot-redis-brain": "0.0.4",
+    "hubot-redis-brain": "1.0.0",
     "hubot-rules": "^1.0.0",
     "hubot-slack": "^4.1.0",
     "hubot-tweeter": "github:willdurand/hubot-tweeter#tailordev",
